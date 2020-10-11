@@ -29,12 +29,12 @@
             const path = window.location.pathname;
 
             if (path === '/anime-info/') {
-                document.getElementById('page-index').hidden = false;
                 await index(json);
+                document.getElementById('page-index').hidden = false;
                 document.getElementById('page-quarter').hidden = true;
             } else {
-                document.getElementById('page-index').hidden = true;
                 await quarter(json.find(({page}) => page == path.substring('/anime-info/'.length)).file)
+                document.getElementById('page-index').hidden = true;
                 document.getElementById('page-quarter').hidden = false;
             }
         }
