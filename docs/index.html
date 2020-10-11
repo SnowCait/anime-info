@@ -4,6 +4,7 @@
     <title>あにめインフォ</title>
     <script defer>
         async function main() {
+            console.log('loaded', window.location);
             const response = await fetch('/anime-info/data/index.json');
             if (!response.ok) {
                 throw new Error(`${response.status} ${response.statusText}`);
@@ -18,8 +19,10 @@
                 // ページが存在すれば更にリダイレクト
                 if (json.find(x => x.page == page) !== undefined) {
                     history.replaceState({}, null, page);
+                    main();
                 } else {
                     // 404 を表示する？
+                    window.location.hash = '';
                 }
             }
 
