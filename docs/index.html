@@ -1,9 +1,106 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>Anime info</title>
+    <title>あにめインフォ</title>
+    <script defer>
+        async function main() {
+            const response = await fetch('/anime-info/data/index.json');
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+            const json = await response.json();
+
+            // 404 からのリダイレクト
+            const hash = window.location.hash;
+            if (hash !== "") {
+                const page = hash.substring('#'.length);
+
+                // ページが存在すれば更にリダイレクト
+                if (json.find(x => x.page == page) !== undefined) {
+                    history.replaceState({}, null, page);
+                } else {
+                    // 404 を表示する？
+                }
+            }
+
+            const path = window.location.pathname;
+
+            if (path === '/anime-info/') {
+                document.getElementById('page-index').hidden = false;
+                document.getElementById('page-quarter').hidden = true;
+
+                await index(json);
+            } else {
+                document.getElementById('page-index').hidden = true;
+                document.getElementById('page-quarter').hidden = false;
+
+                await quarter(json.find(({page}) => page == path.substring('/anime-info/'.length)).file)
+            }
+        }
+        async function index(quarters) {
+            const ul = document.getElementById('quarters');
+            if (ul.children.length > 0) {
+                return;
+            }
+            for (const quarter of quarters) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '';
+                a.textContent = quarter.title;
+                a.addEventListener('click', event => {
+                    event.preventDefault();
+                    history.pushState({}, null, quarter.page);
+                    main();
+                });
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+        }
+        async function quarter(page) {
+            const response = await fetch(`/anime-info${page}`);
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+            const json = await response.json();
+
+            const h2 = document.getElementById('quarter-title');
+            h2.textContent = json.title;
+
+            const ul = document.getElementById('animes');
+            json.data.forEach(anime => {
+                const li = document.createElement('li');
+
+                const a = document.createElement('a');
+                a.href = anime.url;
+                a.textContent = anime.title;
+                a.target = '_blank';
+                li.appendChild(a);
+
+                ul.appendChild(li);
+            });
+
+        }
+        window.addEventListener("popstate", event => {
+            main();
+        });
+        main();
+    </script>
 </head>
 <body>
     <h1>Anime info</h1>
+    <section id="page-index">
+        <ul id="quarters"></ul>
+    </section>
+    <section id="page-quarter">
+        <h2 id="quarter-title"></h2>
+        <ul id="animes"></ul>
+    </section>
+    <hr>
+    <footer>
+        <ul>
+            <li><a href="/anime-info/">トップへ</a></li>
+            <li><a href="https://github.com/SnowCait/anime-info">GitHub</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
