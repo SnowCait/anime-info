@@ -30,14 +30,12 @@
 
             if (path === '/anime-info/') {
                 document.getElementById('page-index').hidden = false;
-                document.getElementById('page-quarter').hidden = true;
-
                 await index(json);
+                document.getElementById('page-quarter').hidden = true;
             } else {
                 document.getElementById('page-index').hidden = true;
-                document.getElementById('page-quarter').hidden = false;
-
                 await quarter(json.find(({page}) => page == path.substring('/anime-info/'.length)).file)
+                document.getElementById('page-quarter').hidden = false;
             }
         }
         async function index(quarters) {
@@ -70,6 +68,9 @@
             h2.textContent = json.title;
 
             const ul = document.getElementById('animes');
+            while (ul.firstChild) {
+                ul.removeChild(ul.lastChild);
+            }
             json.data.forEach(anime => {
                 const li = document.createElement('li');
 
