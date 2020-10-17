@@ -77,10 +77,21 @@
 
                 const a = document.createElement('a');
                 a.href = anime.url;
-                a.textContent = anime.title;
                 a.target = '_blank';
-                li.appendChild(a);
 
+                const article = document.createElement('article');
+
+                const h2 = document.createElement('h2');
+                h2.textContent = anime.title;
+                article.appendChild(h2);
+
+                const production = document.createElement('div');
+                production.textContent = anime.production;
+                article.appendChild(production);
+
+                a.appendChild(article);
+
+                li.appendChild(a);
                 ul.appendChild(li);
             });
 
