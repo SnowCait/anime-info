@@ -13,5 +13,10 @@
         "title": "2020年夏",
         "page": "2020-Q3",
         "file": "/data/2020-Q3.json"
+    },
+    {
+        "title": "2020年秋",
+        "page": "2020-Q4",
+        "file": "/data/2020-Q4.json"
     }
 ]
