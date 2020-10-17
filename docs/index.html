@@ -135,6 +135,26 @@
             text-overflow: ellipsis;
         }
 
+        footer ul {
+            margin: 0 auto;
+            padding: 0;
+            width: 96px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        footer ul li {
+            margin: 0 8px;
+            padding: 0;
+            list-style-type: none;
+            box-sizing: border-box;
+        }
+
+        footer img {
+            width: 32px;
+            height: 32px;
+        }
+
         @media screen and (min-width: 481px) {
             body {
                 width: 80%;
@@ -174,8 +194,16 @@
     <hr>
     <footer>
         <ul>
-            <li><a href="/anime-info/">トップへ</a></li>
-            <li><a href="https://github.com/SnowCait/anime-info">GitHub</a></li>
+            <li>
+                <a href="/anime-info/">
+                    <img src="/anime-info/img/home.svg" alt="Home">
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/SnowCait/anime-info" target="_blank">
+                    <img src="/anime-info/img/github.png" alt="GitHub">
+                </a>
+            </li>
         </ul>
     </footer>
 </body>
