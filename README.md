@@ -7,5 +7,6 @@
 ローカルで確認するためにサーバーを立てます。
 [Node.js](https://nodejs.org/ja/) をインストールして以下のコマンドを実行します。
 ```powershell
+npm install
 node github-pages.js
 ```
