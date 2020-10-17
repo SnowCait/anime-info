@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>あにめインフォ</title>
+    <meta name="description" content="各期アニメ情報">
     <script defer>
         async function main() {
             console.log('loaded', window.location);
@@ -68,6 +69,8 @@
             const h2 = document.getElementById('quarter-title');
             h2.textContent = json.title;
 
+            document.title = `${json.title}アニメ - あにめインフォ`;
+
             const ul = document.getElementById('animes');
             while (ul.firstChild) {
                 ul.removeChild(ul.lastChild);
@@ -78,6 +81,7 @@
                 const a = document.createElement('a');
                 a.href = anime.url;
                 a.target = '_blank';
+                a.rel = 'noopener';
 
                 const article = document.createElement('article');
 
@@ -200,7 +204,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://github.com/SnowCait/anime-info" target="_blank">
+                <a href="https://github.com/SnowCait/anime-info" target="_blank" rel="noopener">
                     <img src="/anime-info/img/github.png" alt="GitHub">
                 </a>
             </li>
