@@ -2,11 +2,69 @@
 <head>
     <meta charset="utf-8">
     <title>あにめインフォ</title>
-    <script>
-        window.location.replace(`/anime-info/#${window.location.pathname.substring('/anime-info/'.length)}`);
+    <script defer>
+        async function main() {
+            const page = window.location.pathname.substring('/anime-info/'.length);
+            const response = await fetch('/anime-info/data/index.json');
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+            const json = await response.json();
+            if (json.some(quarter => quarter.page == page)) {
+                window.location.replace(`/anime-info/#${page}`);
+            }
+        }
+        main();
     </script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        footer ul {
+            margin: 0 auto;
+            padding: 0;
+            width: 96px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        footer ul li {
+            margin: 0 8px;
+            padding: 0;
+            list-style-type: none;
+            box-sizing: border-box;
+        }
+
+        footer img {
+            width: 32px;
+            height: 32px;
+        }
+
+        @media screen and (min-width: 481px) {
+            body {
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>ページが見つかりません</h1>
+    <header>
+        <h1>あにめインフォ</h1>
+        <p>ページが見つかりません</p>
+    </header>
+    <hr>
+    <footer>
+        <ul>
+            <li>
+                <a href="/anime-info/">
+                    <img src="/anime-info/img/home.svg" alt="Home">
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/SnowCait/anime-info" target="_blank">
+                    <img src="/anime-info/img/github.png" alt="GitHub">
+                </a>
+            </li>
+        </ul>
+    </footer>
 </body>
 </html>
