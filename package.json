@@ -1,0 +1,20 @@
+{
+  "name": "anime-info",
+  "version": "1.0.0",
+  "description": "",
+  "main": "github-pages.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SnowCait/anime-info.git"
+  },
+  "author": "SnowCait",
+  "bugs": {
+    "url": "https://github.com/SnowCait/anime-info/issues"
+  },
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
