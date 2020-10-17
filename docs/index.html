@@ -101,6 +101,64 @@
         });
         main();
     </script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        #animes {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #animes li {
+            margin: 0;
+            padding: 0;
+        }
+
+        #animes li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        article {
+            margin: 0;
+            padding: 0;
+            height: 4em;
+        }
+
+        article h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+            color: blue;
+            white-space: nowrap;
+        }
+
+        @media screen and (min-width: 481px) {
+            body {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            #animes {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            #animes li {
+                box-sizing: border-box;
+            }
+
+            article {
+                width: 200px;
+                height: 6em;
+            }
+
+            article h2 {
+                height: 3em;
+                white-space: normal;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>あにめインフォ</h1>
